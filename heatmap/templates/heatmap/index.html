@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+</head>
+<body>
+    Hello
+    <div id='map' style='width: 400px; height: 300px;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2Fua2V0cDYwIiwiYSI6ImNrOTV6NnducDAzNmYzZGxpenVpNDAxNjcifQ.bgtVwS9UHgLq97Nc2kXg5Q';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/dark-v10',
+                center: [72.840253948165994, 18.948808464021141 ],
+                zoom: 11
+            });
+        map.on('load', function() {
+            // Add a geojson point source.
+            // Heatmap layers also work with a vector tile source.
+            map.addSource('earthquakes', {
+            'type': 'geojson',
+            'data':
+                'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson'
+            });
+            
+        });
+</script>
+    
+</body>
+</html>
