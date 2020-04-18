@@ -3,8 +3,10 @@
     {
       "type": "Feature",
       "properties": {
+		"id" : "L",
         "gid": 24,
         "name": "L"
+		
       },
       "geometry": {
         "coordinates": [
