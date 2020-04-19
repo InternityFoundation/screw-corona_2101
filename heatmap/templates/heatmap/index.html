@@ -15,18 +15,37 @@
             var map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/dark-v10',
-                center: [72.840253948165994, 18.948808464021141 ],
-                zoom: 11
+                center: [72.8777, 19.0760],
+                zoom: 9
             });
-        map.on('load', function() {
-            // Add a geojson point source.
-            // Heatmap layers also work with a vector tile source.
-            map.addSource('earthquakes', {
-            'type': 'geojson',
-            'data':
-                'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson'
+            map.on('load', function() {
+                // Add a geojson point source.
+                // Heatmap layers also work with a vector tile source.
+                map.addSource('corona-cases', {
+                'type': 'geojson',
+                'data':
+                    'https://raw.githubusercontent.com/InternityFoundation/screw-corona_2101/master/features_native.geojson'
             });
-            
+                map.addLayer({
+                'id': 'heatmap',
+                'type': 'fill',
+                'source': 'corona-cases',
+                'paint': {
+                    'fill-color': [
+          "case", 
+          ['==', ['get', "name"], "A"], '{{ color_a }}', 
+          ['==', ['get', "name"], "B"], '{{ color_b }}', 
+          ['==', ['get', "name"], "C"], '{{ color_c }}', 
+          ['==', ['get', "name"], "D"], '{{ color_d }}', 
+          ['==', ['get', "name"], "E"], '{{ color_e }}', 
+        
+          '#000000'
+        ],
+        'fill-outline-color': '#3bb2d0',
+        'fill-opacity': 0.5
+      }
+            });
+
         });
 </script>
     
